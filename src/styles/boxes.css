@@ -1,0 +1,49 @@
+.boxes__title {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+/* Flexbox container, single column */
+.boxes__container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.boxes__box {
+  width: 120px;
+  height: 60px;
+  background-color: red;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 600;
+}
+
+.boxes__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.boxes__control {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.boxes__control:hover {
+  background: #f0f0f0;
+}
+
+.boxes__control--active {
+  background: #333;
+  color: #fff;
+}

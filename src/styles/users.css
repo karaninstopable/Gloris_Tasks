@@ -1,0 +1,57 @@
+.users {
+  margin-bottom: 48px;
+}
+
+.users__title {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+/* The <p> in the parent that shows the clicked user's name */
+.users__selected {
+  min-height: 24px;
+  margin: 0 0 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #b00020;
+}
+
+.users__error {
+  color: #b00020;
+}
+
+.users__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.users__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.users__name {
+  font-weight: 600;
+  min-width: 180px;
+}
+
+.users__email {
+  color: #555;
+}
+
+.users__button {
+  padding: 4px 12px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.users__button:hover {
+  background: #f0f0f0;
+}
