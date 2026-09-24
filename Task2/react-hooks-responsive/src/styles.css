@@ -1,0 +1,129 @@
+/* ---------- Design tokens ---------- */
+:root {
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --text: #1c2333;
+  --muted: #6b7386;
+  --primary: #3b5bdb;
+  --accent: #12b886;
+  --border: #dde2ee;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* ---------- FLEXBOX: header ---------- */
+.header {
+  display: flex;
+  align-items: center;      /* vertical alignment */
+  gap: 0.75rem;
+}
+.header h1 {
+  margin: 0;
+  flex: 1;                  /* takes all remaining space, pushes badges right */
+  font-size: clamp(1.4rem, 4vw, 2.2rem); /* fluid type */
+}
+
+.badge {
+  background: var(--primary);
+  color: #fff;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+.badge-alt { background: var(--accent); }
+
+/* ---------- FLEXBOX: toolbar ---------- */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;          /* items drop to next line when space runs out */
+  gap: 0.6rem;
+  margin: 1.25rem 0;
+}
+.toolbar input { flex: 1 1 220px; }   /* grow, shrink, base width */
+.toolbar select { flex: 0 0 auto; }
+
+input, select, .btn {
+  font: inherit;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.btn { cursor: pointer; }
+.btn:hover { border-color: var(--primary); }
+.btn-active { background: var(--primary); color: #fff; border-color: var(--primary); }
+:focus-visible { outline: 3px solid rgba(59, 91, 219, 0.4); outline-offset: 2px; }
+
+/* ---------- FLEXBOX: card grid (flex-wrap) ---------- */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.card {
+  flex: 1 1 calc(25% - 1rem);   /* 4 per row on desktop */
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;       /* nested flexbox: stack content vertically */
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+.card h3 { margin: 0 0 0.25rem; font-size: 1.05rem; }
+.card p { margin: 0; }
+.card-footer {
+  display: flex;
+  justify-content: space-between;  /* price left, button right */
+  align-items: center;
+  gap: 0.5rem;
+}
+.muted { color: var(--muted); font-size: 0.85rem; }
+
+/* ---------- MEDIA QUERIES (desktop-first) ---------- */
+
+/* Tablet: 3 cards per row */
+@media (max-width: 900px) {
+  .card { flex-basis: calc(33.333% - 1rem); }
+}
+
+/* Small tablet: 2 cards per row */
+@media (max-width: 700px) {
+  .card { flex-basis: calc(50% - 1rem); }
+}
+
+/* Mobile: stack everything in one column */
+@media (max-width: 600px) {
+  .app { padding: 0.75rem; }
+  .header { flex-direction: column; align-items: flex-start; }
+  .toolbar { flex-direction: column; }
+  .toolbar input, .toolbar select, .toolbar .btn { width: 100%; }
+  .card { flex-basis: 100%; }
+}
+
+/* Respect user preferences */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151f;
+    --surface: #1b2030;
+    --text: #e8ecf8;
+    --muted: #9aa3ba;
+    --border: #2b3247;
+  }
+}
