@@ -1,0 +1,22 @@
+{
+  "name": "prisma-blog-demo",
+  "version": "1.0.0",
+  "description": "Simple project to demonstrate Prisma ORM: schema, relations, migrations, CRUD, transactions",
+  "main": "src/demo.js",
+  "scripts": {
+    "setup": "prisma migrate dev --name init",
+    "seed": "node src/seed.js",
+    "demo": "node src/demo.js",
+    "studio": "prisma studio",
+    "reset": "prisma migrate reset --force"
+  },
+  "prisma": {
+    "seed": "node src/seed.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^6.0.0"
+  }
+}

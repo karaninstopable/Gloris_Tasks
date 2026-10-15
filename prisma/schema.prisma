@@ -1,0 +1,51 @@
+// Prisma schema: single source of truth for the database structure
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ---------- Models (each model = one table) ----------
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String
+  createdAt DateTime @default(now())
+
+  profile Profile? // One-to-One  (a user has at most one profile)
+  posts   Post[]   // One-to-Many (a user has many posts)
+}
+
+model Profile {
+  id     Int     @id @default(autoincrement())
+  bio    String
+  city   String?
+  userId Int     @unique // @unique makes this One-to-One
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Post {
+  id         Int        @id @default(autoincrement())
+  title      String
+  content    String?
+  published  Boolean    @default(false)
+  views      Int        @default(0)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  authorId   Int
+  author     User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  categories Category[] // Many-to-Many (implicit join table)
+
+  @@index([authorId])
+}
+
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  posts Post[] // Many-to-Many
+}
